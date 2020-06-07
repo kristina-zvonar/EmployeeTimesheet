@@ -1,0 +1,156 @@
+﻿@model EmployeeTimeSheetMSSQLBL.Models.ViewModels.EmployeeViewModel
+
+@{
+    if (ViewBag.Mode == "Add")
+    {
+        ViewBag.Title = "Add New Employee";
+    }
+    else
+    {
+        ViewBag.Title = "Edit Employee";
+    }
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+
+@section scripts {
+    
+    <script src="~/DX/js/jquery-2.2.3.min.js" type="text/javascript"></script>
+    <script src="~/app/employee/employee.addedit.js" type="text/javascript"></script>
+    <script>
+        jQuery(document).ready(function () {
+            EmployeeManageModule.Init("@ViewBag.Mode");
+        });
+    </script>
+
+
+}
+
+
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+    <div class="m-subheader mx-lg-4">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                <h3 class="m-subheader__title m-subheader__title--separator">
+                    @ViewBag.Title
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="m-content ">
+        <div class="row round-corners">
+            <div class="col-md-12">
+
+                <div class="m-portlet m-portlet--tab">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <span class="m-portlet__head-icon m--hide">
+                                    <i class="la la-gear"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body">
+                        @using (Html.BeginForm((string)ViewBag.Mode, "Employee", null, FormMethod.Post, new { @role = "form", @id = "employeeForm" }))
+                        {
+                            HtmlHelper.UnobtrusiveJavaScriptEnabled = false;
+                            <div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="d-flex align-items-center m-lg-2">
+                                            <div class="mr-auto">
+                                                <h3 class="m-subheader__title m-subheader__title--separator">
+                                                    Employee Information
+                                                </h3>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+                                            <label class="required-label">First Name</label>
+                                            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control", @maxlength = "50" })
+                                            <span class="help-block has-error">@Html.ValidationMessageFor(x => x.FirstName)</span>
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+                                            <label class="required-label">Last Name</label>
+                                            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control", @maxlength = "50" })
+                                            <span class="help-block has-error">@Html.ValidationMessageFor(x => x.LastName)</span>
+                                        </div>
+
+                                        @if (User.IsInRole("admin"))
+                                        {
+                                            <div class="form-group col-md-12">
+                                                <label class="required-label">Rank</label>
+                                                @Html.DropDownListFor(model => model.RankID, Model.Ranks, "", new { @class = "form-control" })
+                                                <span class="help-block has-error">@Html.ValidationMessageFor(x => x.RankID)</span>
+                                            </div>
+
+
+                                            <div id="supervisor-group" class="form-group col-md-12">
+                                                <label id="supervisor-label" class="">Supervisor</label>
+                                                @Html.DropDownListFor(model => model.SupervisorID, Model.Supervisors, "", new { @class = "form-control" })
+                                                <span class="help-block has-error">@Html.ValidationMessageFor(x => x.SupervisorID)</span>
+                                            </div>
+                                        }
+
+                                        @if (User.IsInRole("supervisor"))
+                                        {
+                                            @Html.HiddenFor(model => model.RankID)
+                                            @Html.HiddenFor(model => model.SupervisorID)
+                                        }
+
+                                    </div>
+                                    <div id="new-user-form" class="col-md-6">
+                                        <div class="d-flex align-items-center m-lg-2">
+                                            <div class="mr-auto">
+                                                <h3 class="m-subheader__title m-subheader__title--separator">
+                                                    User Information
+                                                </h3>
+                                            </div>
+                                        </div>
+
+                                        @Html.HiddenFor(model => model.UserID)
+
+                                        <div class="form-group col-md-12">
+                                            <label class="required-label">Username</label>
+                                            @Html.TextBoxFor(model => model.Username, new { @class = "form-control", @maxlength = "50" })
+                                            <span id="username-validation" class="help-block has-error">@Html.ValidationMessageFor(x => x.Username)</span>
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+                                            <label class="required-label">Email</label>
+                                            @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @maxlength = "50" })
+                                            <span class="help-block has-error">@Html.ValidationMessageFor(x => x.Email)</span>
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+                                            <label class="required-label">Password</label>
+                                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                            <span class="help-block has-error">@Html.ValidationMessageFor(x => x.Password)</span>
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+                                            <label class="required-label">Confirm Password</label>
+                                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+                                            <span class="help-block has-error">@Html.ValidationMessageFor(x => x.ConfirmPassword)</span>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div style=" margin-left: 15px; margin-top: 15px;" class="col-md-12">
+                                        <button type="submit" id="submitEmployeeButton" class="btn btn-metronic5 btn-info">Save Changes</button>
+                                        <a href="/Employee/" class="btn btn-metronic5 btn-outline-cancel">Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

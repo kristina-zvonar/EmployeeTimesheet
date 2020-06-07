@@ -1,0 +1,38 @@
+﻿.required-label:after {
+    content: " *";
+    font-weight: bold;
+    color: #a94442;
+}
+
+.has-error {
+    color: red;
+}
+
+.red {
+    background-color: #A70F01;
+}
+
+.red:hover {
+    background-color: #FE2712
+}
+
+.bg-dark-blue {
+    background-color: #092834;
+}
+
+.btn-theme-info {
+    background-color: #1A3E4C;
+}
+
+.btn-theme-info:hover {
+    background-color: #347B98;
+}
+
+.round-corners {
+    border-radius: 25px;
+    border: 2px solid #FFFFFF;
+    padding: 20px;
+    width: 100%;
+    height: 100%;
+}
+

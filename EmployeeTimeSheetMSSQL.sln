@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29806.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeTimeSheetMSSQL", "EmployeeTimeSheetMSSQL\EmployeeTimeSheetMSSQL.csproj", "{87EFB941-1EC2-4BC5-AC19-E9C8F7F4BE8F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeTimeSheetMSSQLBL", "EmployeeTimeSheetMSSQLBL\EmployeeTimeSheetMSSQLBL.csproj", "{0FC0BD1C-A3AE-490F-84A1-3938079AF104}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeTimeSheetMSSQLAPI", "EmployeeTimeSheetMSSQLAPI\EmployeeTimeSheetMSSQLAPI.csproj", "{9A532A57-F00A-4653-A304-044A51303307}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{87EFB941-1EC2-4BC5-AC19-E9C8F7F4BE8F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87EFB941-1EC2-4BC5-AC19-E9C8F7F4BE8F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87EFB941-1EC2-4BC5-AC19-E9C8F7F4BE8F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87EFB941-1EC2-4BC5-AC19-E9C8F7F4BE8F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FC0BD1C-A3AE-490F-84A1-3938079AF104}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FC0BD1C-A3AE-490F-84A1-3938079AF104}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FC0BD1C-A3AE-490F-84A1-3938079AF104}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FC0BD1C-A3AE-490F-84A1-3938079AF104}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A532A57-F00A-4653-A304-044A51303307}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A532A57-F00A-4653-A304-044A51303307}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A532A57-F00A-4653-A304-044A51303307}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A532A57-F00A-4653-A304-044A51303307}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {169B43CD-112E-435E-9780-045A8E197BA4}
+	EndGlobalSection
+EndGlobal

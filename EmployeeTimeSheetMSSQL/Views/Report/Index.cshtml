@@ -1,0 +1,84 @@
+﻿@{
+    ViewBag.Title = "Reports";
+    Layout = "/Views/Shared/Master.cshtml";
+}
+
+@section scripts {
+    
+    <script src="~/DX/js/jquery-2.2.3.min.js" type="text/javascript"></script>
+    <script src="~/app/reports/reports.list.js" type="text/javascript"></script>
+    <script>
+        jQuery(document).ready(function () {
+            ReportModule.Init();
+        });
+    </script>
+}
+
+<div style="margin-left:10px; margin-right:10px;">
+    <div class="m-grid__item m-grid__item--fluid m-wrapper">
+        <div class="m-subheader ">
+            <div class="d-flex align-items-center">
+                <div class="mr-auto">
+                    <h3 class="m-subheader__title m-subheader__title--separator">
+                        Employee Timesheet Analytics
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="m-content">            
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <select name="timePeriods" id="timePeriodWorkItem">
+                                <option value=""></option>
+                                <option value="DAY">Last Day</option>
+                                <option value="MONTH" selected>Last Week</option>
+                                <option value="MONTH">Last Month</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Bar Chart by Work Item -->
+                    <div class="card shadow mb-4">
+
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Summary of logged time by work item</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-bar">
+                                <canvas id="workItemChart"></canvas>
+                            </div>
+                            <hr>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <select name="timePeriods" id="timePeriodEmployeeWorkItem">
+                                <option value=""></option>
+                                <option value="DAY">Last Day</option>
+                                <option value="MONTH" selected>Last Week</option>
+                                <option value="MONTH">Last Month</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- Bar Chart by Work Item -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Summary of logged time by work item and employee</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-bar">
+                                <canvas id="workItemEmployeeChart"></canvas>
+                            </div>
+                            <hr>
+                            .
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+    </div>
+</div>
+</div>

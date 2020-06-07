@@ -1,0 +1,94 @@
+﻿@model EmployeeTimeSheetMSSQLBL.Models.ViewModels.TimeLogEntryViewModel
+
+@{
+    if (ViewBag.Mode == "Add")
+    {
+        ViewBag.Title = "Add New Time Log Entry";
+    }
+    else
+    {
+        ViewBag.Title = "Edit Time Log Entry";
+    }
+    Layout = "~/Views/Shared/Master.cshtml";
+}
+
+@section scripts {
+    
+}
+
+
+<div class="m-grid__item m-grid__item--fluid m-wrapper">
+    <div class="m-subheader ">
+        <div class="d-flex align-items-center">
+            <div class="mr-auto">
+                <h3 class="m-subheader__title m-subheader__title--separator">
+                    @ViewBag.Title
+
+                </h3>
+
+            </div>
+            
+        </div>
+    </div>
+    <div class="m-content">
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="m-portlet m-portlet--tab">
+                    <div class="m-portlet__head">
+                        <div class="m-portlet__head-caption">
+                            <div class="m-portlet__head-title">
+                                <span class="m-portlet__head-icon m--hide">
+                                    <i class="la la-gear"></i>
+                                </span>                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="m-portlet__body">
+                        @using (Html.BeginForm((string)ViewBag.Mode, "TimeLog", null, FormMethod.Post, new { @role = "form", @id = "timeLogEntryForm" }))
+                        {
+                            <div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        @if (ViewBag.Mode == "Edit")
+                                        {
+                                            @Html.HiddenFor(model => model.ID)                                            
+                                        }
+                                        @Html.HiddenFor(model => model.EmployeeID) 
+                                        @*@Html.HiddenFor(model => model.EntryDate)*@
+
+                                        <div class="form-group col-md-12">
+                                            <label class="required-label">Date</label>
+                                            @Html.TextBoxFor(model => model.EntryDate, new { @class = "form-control", @maxlength = "50", @readonly = "readonly" })
+                                           
+                                        </div>
+
+                                        <div class="form-group col-md-12">
+                                            <label class="required-label">Hours</label>
+                                            @Html.EditorFor(model => model.Hours, new { htmlAttributes = new { type = "number", min = "0.5", step = "0.5", max="16.0", @class = "form-control" } })
+                                            <span class="help-block has-error">@Html.ValidationMessageFor(x => x.Hours)</span>
+                                        </div>                                        
+
+                                        <div class="form-group col-md-12">
+                                            <label class="required-label">Work Item</label>
+                                            @Html.DropDownListFor(x => x.WorkItemID, Model.WorkItems, "", new { @class = "form-control select2me" })
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div style=" margin-left: 15px; margin-top: 15px;" class="col-md-12">
+                                        <button type="submit" id="submitTimeLogEntry" class="btn btn-metronic5 btn-success">Save Changes</button>
+                                        <a href="/TimeLog/" class="btn btn-metronic5 btn-outline-cancel">Cancel</a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

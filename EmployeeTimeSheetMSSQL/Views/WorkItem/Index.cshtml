@@ -1,0 +1,36 @@
+﻿@{
+    ViewBag.Title = "Work Items";
+    Layout = "/Views/Shared/Master.cshtml";
+}
+
+@section scripts {
+    <script src="~/DX/js/jquery-2.2.3.min.js" type="text/javascript"></script>
+    <script src="~/app/work_items/work_items.list.js" type="text/javascript"></script>
+    <script>
+        jQuery(document).ready(function () {
+            WorkItemModule.Init("@User.IsInRole("employee")" == "True", "@User.IsInRole("admin")" == "True");
+        });
+    </script>
+}
+
+<div style="margin-left:10px; margin-right:10px;">
+    <div class="m-grid__item m-grid__item--fluid m-wrapper">        
+        <div class="m-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h5 class="m-subheader__title m-subheader__title--separator">Work Item Management</h5>
+                        </div>
+                        <div class="card-body">
+                            <div id="work_items">
+                            </div>
+                            <hr>
+                        </div>
+                    </div>                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
